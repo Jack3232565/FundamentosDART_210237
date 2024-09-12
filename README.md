@@ -12,7 +12,7 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Integra
 |3|Hola Munado desde DART|Por definir|Activar|
 
 ### LISTA DE HERRAMIENTAS
-![DART](https://img.shields.oi/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![DART](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 
 ### AUTOR
 Elaborado por: Carlos Iván Crespo Alvarado [Jack323256](https://github.com/Jack3232565/)
