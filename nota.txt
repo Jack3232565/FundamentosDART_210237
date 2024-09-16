@@ -1,0 +1,1 @@
+Para visualizar el README se presiona control+ship-v
