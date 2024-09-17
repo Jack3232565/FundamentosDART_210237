@@ -1,1 +1,34 @@
 Para visualizar el README se presiona control+ship-v
+
+--Cambio de rama 
+
+git checkout main
+
+-- Haz un pull de la rama main para asegurarte de que está actualizada:
+
+git pull origin main
+
+-- Fusiona la rama Carlos-Practica04 en main:
+
+git merge Carlos-Practica04
+
+-- Realiza el commit de la fusión (si no lo ha hecho automáticamente): 
+
+git commit -m "Fusionando la rama Carlos-Practica04 en main"
+
+-- Elimina la rama Carlos-Practica04: Primero, elimina la rama local.
+
+git branch -d Carlos-Practica04
+
+-- Luego, si también quieres eliminar la rama remota (en el servidor):
+
+git push origin --delete Carlos-Practica04
+
+-- Realiza el commit confirmando la eliminación de la rama:
+
+git commit --allow-empty -m "Rama Carlos-Practica04 eliminada"
+
+-- Sube los cambios al repositorio remoto:
+
+git push origin main
+
