@@ -21,5 +21,6 @@ Vida(hp): $hp
 Estatus de vida: $isAlive
 Habilidades: $abilities
 Imagen: $sprites
+
 ''');
 }
