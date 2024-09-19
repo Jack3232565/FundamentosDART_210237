@@ -43,3 +43,5 @@ void main() {
   El último cambio de errorMessage es: $errorMessage
   Cuando el sistema funciona correctamente, el mensaje de error puede ser FALSO.''');
 }
+
+// Resultado:
