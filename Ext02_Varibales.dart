@@ -16,6 +16,8 @@ final sprites = <String>['bulbasor/front.png','bulbasor/back.png'];
 
 final int puntos = 0;
 
+// Tablero del Juego y llamado de las variables que almacenan los dato de tipo
+// String, Int, Boolean, List y Map
 print('''El pokemon es $pokemon
 -------------------------------------------------
 Las estadisiticas de $pokemon
