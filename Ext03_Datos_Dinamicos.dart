@@ -44,4 +44,4 @@ void main() {
   Cuando el sistema funciona correctamente, el mensaje de error puede ser FALSO.''');
 }
 
-// Resultado:
+// Resultado: configurando rama del ejercicio 05
