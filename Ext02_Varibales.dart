@@ -26,6 +26,5 @@ Estatus de vida: $isAlive
 Habilidades: $abilities
 Imagen: $sprites
 Puntos: $puntos
-
 ''');
 }
