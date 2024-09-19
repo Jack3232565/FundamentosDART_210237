@@ -14,6 +14,8 @@ final abilities = ['Impact-True', 'acuatico'];
 
 final sprites = <String>['bulbasor/front.png','bulbasor/back.png'];
 
+final int puntos = 0;
+
 print('''El pokemon es $pokemon
 -------------------------------------------------
 Las estadisiticas de $pokemon
@@ -21,6 +23,7 @@ Vida(hp): $hp
 Estatus de vida: $isAlive
 Habilidades: $abilities
 Imagen: $sprites
+Puntos: $puntos
 
 ''');
 }
