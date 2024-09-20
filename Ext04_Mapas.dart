@@ -71,8 +71,6 @@ void main() {
 
   """);
 
-
-
 print("Lamado de las variables 'pokemons', 'trainer' y 'pokemon' ");
   // Use the pokemons variable
   print("List of pokemons: $pokemons");
