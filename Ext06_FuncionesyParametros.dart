@@ -1,5 +1,8 @@
 void main () {
 
+// declaracion de la variable
+  // final double totalCarList; 
+
 // 1. Llamado de un funcion sin prarámetros
 greetEveryone();
 
@@ -46,6 +49,29 @@ print("-------------------------------------------");
 // 4.2 solo enviando el obligatorio
   print(greetHourOfDay2("Janet", null));
   print("Hora: $hora");
+
+
+// 5. funciones LAMBDA - Las funciuones lambda, mejor conocidas como funciones anonimas o funciones 
+//simplificadas, se ejecutan de manera simple y no frecuente en la ejecucion de un programa o sistema
+
+var calcularCosto = (double productQueantity, double productPrice, double percentageDisscount) => { 
+(productQueantity * productPrice) * (100 - percentageDisscount)};
+
+// nota las LAMBDA fuction solo deben de llevar una intruccion a la vez
+
+double cantidadProducto = 5;
+double precioProducto = 125.50;
+double descuento = 2.5;
+
+print("""
+    Costo del producto ${precioProducto}
+    Cantidad ${cantidadProducto}
+    Descuento ${descuento}
+    ------------------------------------------------------
+    Costo del Carrito de Compras: ${calcularCosto(cantidadProducto, precioProducto, descuento)}
+""");
+
+
 }
 
 //Funciones y Parametros
@@ -120,3 +146,7 @@ String greetHourOfDay2(String name, int? hora){
   return "${saludo}, ${name}";
 
 }  
+
+
+// 5. Funciones LAMBDA
+
