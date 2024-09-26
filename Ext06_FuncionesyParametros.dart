@@ -40,6 +40,8 @@ print("-------------------------------------------");
 // Esta no se puede ejecura po que si no se definen los parametros 
 // de un funcion por default estan definidos como obligatorios
 
+  print("----------------------------------------------------");
+    print("---- Funciones con parametos Opcionales ---- ");
 // 4.Llamado de una funcion con parametros opcionales.
 // 4.1 Enviamos ambos parametros
   String name = "Carlos";
@@ -51,6 +53,8 @@ print("-------------------------------------------");
   print("Hora: $hora");
 
 
+  print("----------------------------------------------------");
+    print("---- Funciones Lambda ---- ");
 // 5. funciones LAMBDA - Las funciuones lambda, mejor conocidas como funciones anonimas o funciones 
 //simplificadas, se ejecutan de manera simple y no frecuente en la ejecucion de un programa o sistema
 
@@ -68,9 +72,27 @@ print("""
     Cantidad ${cantidadProducto}
     Descuento ${descuento}
     ------------------------------------------------------
-    Costo del Carrito de Compras: ${calcularCosto(cantidadProducto, precioProducto, descuento)}
-""");
+    Costo del Carrito de Compras: ${calcularCosto(cantidadProducto, precioProducto, descuento)}""");
 
+
+  print("----------------------------------------------------");
+    print("---- Parametos Nombrados ---- ");
+// 6 Funciones con parametros Nombrados
+
+print(infoCarListStatus(buyerName: "Gabriel"));
+
+// 6.1 llammado de  una funcion con parametros nulos
+print(infoCarListStatus(
+  status: "En espera de pago",
+  amounutCarList: 2416.20,
+  buyerName: "Alexa" 
+));
+
+
+
+
+
+// ---------------------------------------------------------------------------------------------------
 
 }
 
@@ -106,10 +128,15 @@ String greetSomeoneTypy(String name){
   return "Hola, $name";
 }
 
-//4. Función con parametros opcionales
+//4. Función que reciben mas de un parametros 
+
+String greetSomeoneHourOfDay(String name, [int? hourDay]){
+  String greeting = "Hola, $name";
+  return greeting;
+}
 
 // int? Puede ser opcional - NullSafety
-String greetHourOfDay(String name, int? hora){
+String greetHourOfDay(String name, [int? hora]){
   hora ??= DateTime.now().hour;
   String saludo;
 
@@ -148,5 +175,13 @@ String greetHourOfDay2(String name, int? hora){
 }  
 
 
-// 5. Funciones LAMBDA
 
+
+// 5. Funciones con parametros Nombrados
+
+String infoCarListStatus({
+  required String buyerName,
+  double amounutCarList = 0.0,
+  String status = "Seleccion de Productos"}) {
+  return "El Carrito de compras de: ${buyerName}, tiene un total de \$${amounutCarList} y actualmente está en estatus: ${status}";
+}
