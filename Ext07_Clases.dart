@@ -36,6 +36,12 @@ print(justiceLeague.type);
 // que no lo permite por que la propiedad del nombre no es requerido
 //final hydra = Team(type: "Villanos");
 
+//invocamos el metodo toString
+print(xmen.toString());
+print(wolverine.name);
+print(wolverine.type);
+print(wolverine.toString);
+
 
 }
 
@@ -51,7 +57,9 @@ class Hero {
   // se inicializa en un constructor
   Hero(String pName, String pPower): 
     name= pName,
-    power = pPower; 
+    power = pPower;
+    
+      Object? get type => null; 
 }
 
 //2. Clase con propiedades no Pocicionales y nombradas 
@@ -62,4 +70,13 @@ class Team
 
   //El construcutor de la clase siempre debe llevar el mismo nombre del a misma
   Team({required this.name, this.type="No definido"});
+
+  // Decoradores de sobreescripcion "@override" si la clase trae una 
+  //clase de origen con "toString()
+
+  @override
+  String toString(){
+    return 'Gropo: $name, Tipo: $type';
+  }
+
 }
