@@ -37,11 +37,16 @@ print(" ----------- Ejemplo 3 ----------------------");
 
 
 void funcionUno(int a) {
+  // Si 'a' es igual a 3, imprime un mensaje específico.
   if (a == 3) {
     print("El parametro es 3");
   } else {
+    // Si 'a' no es igual a 3, imprime un mensaje diferente.
     print("El parametro no es 3");
   }
 }
 
-void funcionDos(int a) => print("El parámetro ${a == 3 ? 'es ' : 'no es '}3");
+void funcionDos(int a) =>
+  // Usa un operador ternario para determinar si 'a' es igual a 3 o no.
+  // La expresión ternaria 'a == 3 ? 'es ' : 'no es '' selecciona la cadena apropiada.
+  print("El parámetro ${a == 3 ? 'es ' : 'no es '}3");
