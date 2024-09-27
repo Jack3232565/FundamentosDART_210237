@@ -65,6 +65,7 @@ class Person
 @override
   String toString()
   {
+    //Norta: no esta inicilizada esta funcion 
     // final String formatedBrirthDate = 
     //   "${birthdate.day.toString().padLeft(2,'0')}/" + 
     //   "${birthdate.month.toString().padLeft(2,'0')}/${birthdate.year} "; 
