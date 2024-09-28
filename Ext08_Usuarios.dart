@@ -72,7 +72,11 @@ class Person
 
     final String formatedCreateDate = 
       "${createAt.day.toString().padLeft(2,'0')}/" + 
-                        "${createAt.day.toString().padLeft(2,'0')} ${createAt.month.toString().padLeft(2,'0')}/${createAt.year}${createAt.hour.toString().padLeft(2,'0')}:${createAt.minute.toString().padLeft(2,'0')}:${createAt.second.toString().padLeft(2,'0')}";
+                        "${createAt.day.toString().padLeft(2,'0')}/" +
+                        "${createAt.month.toString().padLeft(2,'0')}/${createAt.year}/" + 
+                        "${createAt.hour.toString().padLeft(2,'0')}:" + 
+                        "${createAt.minute.toString().padLeft(2,'0')}:"+
+                        "${createAt.second.toString().padLeft(2,'0')}";
 
           curp ??= "No registrado";
           if(curp == "") curp = "No registrado";
