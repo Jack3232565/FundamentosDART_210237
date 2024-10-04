@@ -4,7 +4,7 @@ void main() {
 
   // Usamos el setter para asignar un nuevo valor al lado y ver el mensaje impreso
   // Esto invoca el setter, que valida y asigna el nuevo valor al lado
-  mySquare.side = -23; // Se espera el mensaje: "Asignando un nuevo valor al lado: 23"
+  mySquare.side = 23; // Se espera el mensaje: "Asignando un nuevo valor al lado: 23"
 
   // Imprimir el valor del lado y el área ocupada por el cuadrado
   print("""
