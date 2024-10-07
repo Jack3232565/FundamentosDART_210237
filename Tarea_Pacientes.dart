@@ -5,6 +5,7 @@ void main() {
   // con la descipcion del paciente.
   final paciente1 = Paciente(
     id: 256,
+    cortesyTitle: "Dr.",
     nombre: 'Carlos',
     primer_apellido: 'Crespo',
     segundo_apellido: 'Alvardo',
@@ -15,10 +16,11 @@ void main() {
     estatus: 'Activo',
     nss: '1234567890',
     tipoSeguro: 'Publico IMSS',
-    estatusVida: 'Vivo',
+    estatusVida: EstatusVida.Vivo,
     estatusMedico: 'Activo',
     fechaRegistro: DateTime.now(),
     fechaUltimaCita: DateTime.now(),
+    tipoUsuario: usuario.Nuevo
   ); 
   //Se imprimen los datos del paciente que se han procesado 
   //desde la Clase Paciente y la clase Abstracta Paciente 
@@ -29,6 +31,7 @@ void main() {
   // los datos del trabajador exitente en la base de datos son:
   final paciente2 = Paciente(
     id: 257,
+    cortesyTitle: "Dra.",
     nombre: 'Janet',
     primer_apellido: 'Hernandez',
     segundo_apellido: 'Viveros',
@@ -39,10 +42,11 @@ void main() {
     estatus: 'Activo',
     nss: '0987654321',
     tipoSeguro: 'Publico ISSSTE',
-    estatusVida: 'Vivo',
+    estatusVida: EstatusVida.Vivo,
     estatusMedico: 'Activo',
     fechaRegistro: DateTime(2020, 1, 15), // Fecha en la que se registro el paciente
     fechaUltimaCita: DateTime.now(),
+    tipoUsuario: usuario.Registrado
   );
     //Se imprimen los datos del paciente que se han procesado 
   //desde la Clase Paciente y la clase Abstracta Paciente 
@@ -52,6 +56,7 @@ void main() {
   // Caso 3: Paciente que acaba de fallecer
   final paciente3 = Paciente(
     id: 258,
+    cortesyTitle: "Sra.",
     nombre: 'Daniela',
     primer_apellido: 'Lopez',
     segundo_apellido: 'Marquez',
@@ -62,17 +67,34 @@ void main() {
     estatus: 'Activo',
     nss: '5678912345',
     tipoSeguro: 'Privado ING',
-    estatusVida: 'Vivo',
+    estatusVida: EstatusVida.Vivo,
     estatusMedico: 'Activo',
     fechaRegistro: DateTime(2022, 6, 10),
     fechaUltimaCita: DateTime.now(),
+    tipoUsuario: usuario.Registrado
   );
     //Se imprimen los datos del paciente que se han procesado 
     //desde la Clase Paciente y la clase Abstracta Paciente 
     paciente3.registrarDefuncion(); // Cambia el estatus del paciente a fallecido
     //  datos del paciente 3 después de su defunción
     paciente3.imprimirDatosPaciente();
+
+  
+
 }
+
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+
+// Declaracion para el tipo de usuario
+enum usuario { Nuevo, Registrado, Finado }
+
+// Declaración del enum para estatus de vida
+enum EstatusVida { Vivo, Fallecido, Desconocido }
+
+// Declaración del enum para estatus médico
+enum EstatusMedico { Activo, Inactivo }
+
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
@@ -84,6 +106,7 @@ void main() {
 // asegurando que las clases derivadas implementen ciertos comportamientos o propiedades. 
 abstract class Persona {
   int id;
+  String cortesyTitle;
   String nombre;
   String primer_apellido;
   String segundo_apellido;
@@ -99,6 +122,7 @@ abstract class Persona {
   // para la creacion de la persona.
   Persona({
     required this.id,
+    required this.cortesyTitle,
     required this.nombre,
     required this.primer_apellido,
     required this.segundo_apellido,
@@ -112,7 +136,7 @@ abstract class Persona {
 
   // Método para imprimir los datos de la persona
   void imprimirDatosPersona() {
-    print('Datos de la Persona $nombre $primer_apellido $segundo_apellido');
+    print('Datos de la Persona $cortesyTitle $nombre $primer_apellido $segundo_apellido');
     print('fecha de Registro $fechaRegistro');
     print('-----------------------------------------------------------------------------');
     print('ID: $id');
@@ -123,9 +147,11 @@ abstract class Persona {
     print('Grupo Sanguíneo: $grupoSanguineo');
     print('Fecha de Nacimiento: ${fechaNacimiento.year}-${_twoDigits(fechaNacimiento.month)}-${_twoDigits(fechaNacimiento.day)}');
     print('CURP: $curp');
-    print('Estatus: $estatus');
+    print('Estatus Médico: ${estatus.toString().split('.').last}'); // Seleccion Enum
     print('-----------------------------------------------------------------------------');
   }
+
+
 
   // Helper para formatear números de un solo dígito con un cero delante
   // Es útil para formatear fechas y horas, por ejemplo, en situaciones 
@@ -145,14 +171,16 @@ abstract class Persona {
 class Paciente extends Persona {
   String nss;
   String tipoSeguro;
-  String estatusVida;
+  EstatusVida estatusVida;
   String estatusMedico;
   DateTime fechaRegistro;
   DateTime fechaUltimaCita;
+  usuario tipoUsuario;
 
   // Constructor de la clase Paciente
   Paciente({
     required int id,
+    required String cortesyTitle,
     required String nombre,
     required String primer_apellido,
     required String segundo_apellido,
@@ -167,6 +195,7 @@ class Paciente extends Persona {
     required this.estatusMedico,
     required this.fechaRegistro,
     required this.fechaUltimaCita,
+    required this. tipoUsuario,
   }) 
   // con (): super) se llama al contructor pader (Paciente) 
   // heredado de (Persona), el constructor de la clase hija 
@@ -175,6 +204,7 @@ class Paciente extends Persona {
   //inicialicen correctamente.
     : super(
           id: id,
+          cortesyTitle: cortesyTitle,
           nombre: nombre,
           primer_apellido: primer_apellido,
           segundo_apellido: segundo_apellido,
@@ -192,14 +222,17 @@ class Paciente extends Persona {
   @override
   void imprimirDatosPersona() {
     super.imprimirDatosPersona(); // Llama al método original
+    print('Paciente: ${tipoUsuario.toString().split('.').last}'); // Seleccion Enum
     print('Datos adicionales del paciente:');
     print('NSS: $nss');
     print('Tipo de Seguro: $tipoSeguro');
-    print('Estatus Vida: $estatusVida');
-    print('Estatus Médico: $estatusMedico');
+    print('Estatus de Vida: ${estatusVida.toString().split('.').last}'); // Seleccion Enum
+    print('Estatus Médico: ${estatusMedico.toString().split('.').last}'); // Seleccion Enum
     print('Fecha de Registro: ${fechaRegistro.year}-${_twoDigits(fechaRegistro.month)}-${_twoDigits(fechaRegistro.day)}');
     print('-----------------------------------------------------------------------------');
   }
+
+  
 
   // Método para imprimir los datos del paciente
   void imprimirDatosPaciente() {
@@ -210,7 +243,10 @@ class Paciente extends Persona {
 
   // Método para registrar la defunción del paciente
   void registrarDefuncion() {
-    estatusVida = 'Fallecido';
-    estatusMedico = 'Inactivo';
+    estatusVida = EstatusVida.Fallecido;
+    estatusMedico = EstatusMedico.Inactivo.toString().split('.').last;
+    tipoUsuario= usuario.Finado;
   }
+
+
 }
