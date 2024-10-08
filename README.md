@@ -18,10 +18,10 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Integra
 |9|Clases y Sobreescritura de Métodos Nativos|9|Finalizada|
 |10|Construcutores Nombrado|8|Finalizada|
 |11|Getters (Lectura Controlada) y Setters (Modificacion Controlada)|9|Finalizada|
-|12|Clases y Abstracción |8|Activa|
+|12|Clases y Abstracción |11|Activa|
 |Tarea 04| Uso de Clases Abstractas en el Caso de Estudio del Hospital |10|Activa|
 |13|Aserciones|3|Activa|
-|14|Mixins|7|Activa|
+|14|Mixins|11|Activa|
 
 ### LISTA DE HERRAMIENTAS
 ![DART](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
