@@ -32,6 +32,7 @@ abstract class Pez extends Animal{}
 
 //------------------------------------------------------------
 //Declaracion de la clase Voladora
+//abstract cambiado a mixin
 mixin Volador {
   void volar() => print('Estoy Volando');
 }
@@ -55,19 +56,27 @@ class Paloma extends Ave with Volador, Caminante{}
 class Pato extends Ave with Volador, Nadador, Caminante{}
 class Tiburon extends Pez with Nadador{}
 class PezVolador extends Pez with Nadador{}
+class Ballena extends Mamifero with Nadador{}
 
 //-----Utilizacion ----
 
 void main() {
 
   final flipper = Delfin();
+  print("Instanciado la clase Mamifero y accediendo al la subclase nadador, e istanciando con Delfin");
   flipper.nadar();
+  
+  final willi = Ballena();
+    print("Instanciado la clase Mamifero y accediendo al la subclase nadador, e istanciando con Ballena");
+  willi.nadar();
 
-  final batman = Murcielago();
-  batman.caminar();
-  batman.volar();
+  final chupacabras = Murcielago();
+    print("Instanciado la clase Ave y accediendo al la subclase Volador y Caminar, e istanciando con Cupacabras");
+  chupacabras.caminar();
+  chupacabras.volar();
 
   final Lucas = Pato();
+    print("Instanciado la clase Ave y accediendo al la subclase Volador, Nadador y Caminar, e istanciando con Pato");
   Lucas.nadar();
   Lucas.volar();
   Lucas.caminar();
