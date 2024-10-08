@@ -95,6 +95,9 @@ enum EstatusVida { Vivo, Fallecido, Desconocido }
 // Declaración del enum para estatus médico
 enum EstatusMedico { Activo, Inactivo }
 
+// tipos de Sangre
+// enum TipoSangre { }
+
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
