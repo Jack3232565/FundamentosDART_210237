@@ -14,7 +14,6 @@ double chargePhone(EnergyPlant plant) {
   if (plant.energyLeft < 10) {
     throw Exception('Not enough energy');
   }
-
   return plant.energyLeft - 10;
 }
 

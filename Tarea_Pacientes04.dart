@@ -1,6 +1,7 @@
 
 
 void main() {
+
   // Caso 1: Nuevo Paciente registrado hoy, 
   // con la descipcion del paciente.
   final paciente1 = Paciente(
@@ -9,8 +10,8 @@ void main() {
     nombre: 'Carlos',
     primer_apellido: 'Crespo',
     segundo_apellido: 'Alvardo',
-    genero: 'Male',
-    grupoSanguineo: 'O+',
+    genero: Genero.Masculino,
+    grupoSanguineo: GrupoSanguineo.OP,
     fechaNacimiento: DateTime(1992, 8, 5),
     curp: 'ANSISISNN12233',
     estatus: 'Activo',
@@ -35,8 +36,8 @@ void main() {
     nombre: 'Janet',
     primer_apellido: 'Hernandez',
     segundo_apellido: 'Viveros',
-    genero: 'Female',
-    grupoSanguineo: 'A+',
+    genero: Genero.Femenino,
+    grupoSanguineo: GrupoSanguineo.AP,
     fechaNacimiento: DateTime(1985, 12, 10),
     curp: 'MARGLOPE12345',
     estatus: 'Activo',
@@ -60,8 +61,8 @@ void main() {
     nombre: 'Daniela',
     primer_apellido: 'Lopez',
     segundo_apellido: 'Marquez',
-    genero: 'Male',
-    grupoSanguineo: 'B+',
+    genero: Genero.Masculino,
+    grupoSanguineo: GrupoSanguineo.BP,
     fechaNacimiento: DateTime(1970, 4, 25),
     curp: 'PEDLOMAR123456',
     estatus: 'Activo',
@@ -89,6 +90,9 @@ void main() {
 // Declaracion para el tipo de usuario
 enum usuario { Nuevo, Registrado, Finado }
 
+// Declaracion para el Sexo del paciente
+enum Genero { Masculino, Femenino}
+
 // Declaración del enum para estatus de vida
 enum EstatusVida { Vivo, Fallecido, Desconocido }
 
@@ -96,14 +100,14 @@ enum EstatusVida { Vivo, Fallecido, Desconocido }
 enum EstatusMedico { Activo, Inactivo }
 
 // tipos de Sangre
-// enum TipoSangre { }
+enum GrupoSanguineo { AP, AN, BP, BN, ABP, ABN, OP, ON, RHP, RHN }
 
 
 //-------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------
 
 // Declaracion de la clase abstracta Persona
-// Estra es la estrucutura que se utilizara en todos los llamados
+// Esta es la estrucutura que se utilizara en todos los llamados
 // donde se utilice la clase Persona
 // Su propósito es servir como una base o plantilla para otras clases que la heredan,
 // asegurando que las clases derivadas implementen ciertos comportamientos o propiedades. 
@@ -113,8 +117,8 @@ abstract class Persona {
   String nombre;
   String primer_apellido;
   String segundo_apellido;
-  String genero;
-  String grupoSanguineo;
+  Genero genero;
+  GrupoSanguineo grupoSanguineo;
   DateTime fechaNacimiento;
   String curp;
   String estatus;
@@ -146,11 +150,11 @@ abstract class Persona {
     print('Nombre: $nombre');
     print('Primer Apellido: $primer_apellido');
     print('Segundo Apellido: $segundo_apellido');
-    print('Género: $genero');
-    print('Grupo Sanguíneo: $grupoSanguineo');
-    print('Fecha de Nacimiento: ${fechaNacimiento.year}-${_twoDigits(fechaNacimiento.month)}-${_twoDigits(fechaNacimiento.day)}');
+    print('Género: ${genero.toString().split('.').last}'); // Implementacion del Enum para el Genero
+    print('Grupo Sanguíneo: ${grupoSanguineo.toString().split('.').last}'); // Implementacion del Enum para el Tipo de Sangre
+    print('Fecha de Nacimiento: ${fechaNacimiento.year}-${_twoDigits(fechaNacimiento.month)}-${_twoDigits(fechaNacimiento.day)}'); // Reconfigura los digitos de las fechas
     print('CURP: $curp');
-    print('Estatus Médico: ${estatus.toString().split('.').last}'); // Seleccion Enum
+    print('Estatus Médico: ${estatus.toString().split('.').last}'); // Seleccion Enum Para el Estatus de Vida del Paciente
     print('-----------------------------------------------------------------------------');
   }
 
@@ -174,11 +178,11 @@ abstract class Persona {
 class Paciente extends Persona {
   String nss;
   String tipoSeguro;
-  EstatusVida estatusVida;
+  Enum estatusVida; // Se Asigna la Configuracion dada en el Enum para el Estatus de Vida
   String estatusMedico;
   DateTime fechaRegistro;
   DateTime fechaUltimaCita;
-  usuario tipoUsuario;
+  Enum tipoUsuario; // Se Asigna la Configuracion dad en el Enum para el Tipo de Usuario Registrado
 
   // Constructor de la clase Paciente
   Paciente({
@@ -187,8 +191,8 @@ class Paciente extends Persona {
     required String nombre,
     required String primer_apellido,
     required String segundo_apellido,
-    required String genero,
-    required String grupoSanguineo,
+    required Genero genero, // Aplicacion del Enum Para el Genero del Paciente
+    required GrupoSanguineo grupoSanguineo, // Aplicacion del Enum Para Tipo Sanguineo Requerido
     required DateTime fechaNacimiento,
     required String curp,
     required String estatus,
@@ -200,7 +204,7 @@ class Paciente extends Persona {
     required this.fechaUltimaCita,
     required this. tipoUsuario,
   }) 
-  // con (): super) se llama al contructor pader (Paciente) 
+  // con (): super) se llama al contructor padre (Paciente) 
   // heredado de (Persona), el constructor de la clase hija 
   //(Paciente) necesita asegurarse de que las propiedades 
   //definidas en la clase base (Persona) también se 
@@ -235,7 +239,6 @@ class Paciente extends Persona {
     print('-----------------------------------------------------------------------------');
   }
 
-  
 
   // Método para imprimir los datos del paciente
   void imprimirDatosPaciente() {
@@ -246,10 +249,8 @@ class Paciente extends Persona {
 
   // Método para registrar la defunción del paciente
   void registrarDefuncion() {
-    estatusVida = EstatusVida.Fallecido;
-    estatusMedico = EstatusMedico.Inactivo.toString().split('.').last;
-    tipoUsuario= usuario.Finado;
+    estatusVida = EstatusVida.Fallecido; // Seleccion de Enum
+    estatusMedico = EstatusMedico.Inactivo.toString().split('.').last; //Seleccion de Enum
+    tipoUsuario= usuario.Finado; // Seleccion de Enum
   }
-
-
 }
