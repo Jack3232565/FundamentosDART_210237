@@ -1,10 +1,23 @@
-
-
+//            Fundamentos en DART
+//
+//          Desarrollo Móvil Integral
+//
+// Docente: M.T.I Marco Antonio Ramírez Hernández 
+//  
+//  Tarea 04 - Clases Abstractas caso Hospital
+//  
+//      Carlos Iván Crespo Alvarado - 210237
+//                   10 A°
+//      Fecha: 11 de Octubre del 2024
+// 
 void main() {
 
-  // Caso 1: Nuevo Paciente registrado hoy, 
-  // con la descipcion del paciente.
-  final paciente1 = Paciente(
+  final operacionesCRUD = OperacionesCRUD();
+
+// Operacion - CREATE (Insercion de DATOS)
+ // Caso 1: Nuevo Paciente registrado hoy,
+ // con la descipcion del paciente.
+final pacienteA = NuevoPaciente(
     id: 256,
     cortesyTitle: "Dr.",
     nombre: 'Carlos',
@@ -22,15 +35,14 @@ void main() {
     fechaRegistro: DateTime.now(),
     fechaUltimaCita: DateTime.now(),
     tipoUsuario: usuario.Nuevo
-  ); 
+);
   //Se imprimen los datos del paciente que se han procesado 
-  //desde la Clase Paciente y la clase Abstracta Paciente 
-    paciente1.imprimirDatosPaciente();
-//-------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------
+  //desde la Clase Extendida NuevoPaciente que recibe los datos de la clase Abstracta Paciente 
+pacienteA.imprimirDatosPaciente();
+
   // Caso 2: Paciente que fue trabajador del hospital con fecha de registro anterior
   // los datos del trabajador exitente en la base de datos son:
-  final paciente2 = Paciente(
+final pacienteB = PacienteRegistrado(
     id: 257,
     cortesyTitle: "Dra.",
     nombre: 'Janet',
@@ -48,20 +60,20 @@ void main() {
     fechaRegistro: DateTime(2020, 1, 15), // Fecha en la que se registro el paciente
     fechaUltimaCita: DateTime.now(),
     tipoUsuario: usuario.Registrado
-  );
-    //Se imprimen los datos del paciente que se han procesado 
-  //desde la Clase Paciente y la clase Abstracta Paciente 
-  paciente2.imprimirDatosPaciente();
+);
+  //Se imprimen los datos del paciente que se han procesado 
+  //desde la Clase Extendida PacienteRegistrado que recibe los datos de la clase Abstracta Paciente 
+pacienteB.imprimirDatosPaciente();
 
-//-------------------------------------------------------------------------------------
-  // Caso 3: Paciente que acaba de fallecer
-  final paciente3 = Paciente(
-    id: 258,
+
+  // Caso 3: Paciente fallecido
+final pacienteC = Pacientefinado(
+  id: 261,
     cortesyTitle: "Sra.",
     nombre: 'Daniela',
     primer_apellido: 'Lopez',
     segundo_apellido: 'Marquez',
-    genero: Genero.Masculino,
+    genero: Genero.Femenino,
     grupoSanguineo: GrupoSanguineo.BP,
     fechaNacimiento: DateTime(1970, 4, 25),
     curp: 'PEDLOMAR123456',
@@ -72,15 +84,46 @@ void main() {
     estatusMedico: 'Activo',
     fechaRegistro: DateTime(2022, 6, 10),
     fechaUltimaCita: DateTime.now(),
-    tipoUsuario: usuario.Registrado
-  );
-    //Se imprimen los datos del paciente que se han procesado 
-    //desde la Clase Paciente y la clase Abstracta Paciente 
-    paciente3.registrarDefuncion(); // Cambia el estatus del paciente a fallecido
-    //  datos del paciente 3 después de su defunción
-    paciente3.imprimirDatosPaciente();
+    tipoUsuario: usuario.Registrado,
+    deceso: DateTime.now()
+);
+  //Se imprimen los datos del paciente que se han procesado 
+pacienteC.imprimirDatosPaciente();
+ 
+ //---------------------------------------------------------------
 
-  
+// Operacion - CREATE (Insercion de DATOS)
+  print('-----------------------------------------------');
+  print('--- Operacion - CREATE (Insercion de DATOS) ---');
+  print('-----------------------------------------------');
+operacionesCRUD.crearPersona(pacienteA);
+operacionesCRUD.crearPersona(pacienteB);
+operacionesCRUD.crearPersona(pacienteC);
+
+print('-----------------------------------------------');
+print('-----------------------------------------------');
+print('--- Operacion - READ (Lectura de los Datos) ---');
+print('-----------------------------------------------');
+// Operacion - READ (Lectura de los Datos)
+operacionesCRUD.TodoPersonas();
+
+print('-----------------------------------------------');
+print('-----------------------------------------------');
+print('--- Operacion - UPDATE (Actualizacion de los Datos) ---');
+print('-----------------------------------------------');
+// Operacion - UPDATE (Actualizacion de los Datos)
+operacionesCRUD.actualizarPersona(261, pacienteC);
+//Se imprimen los datos del paciente que se han procesado 
+//desde la Clase Extendida Pacientefianado que recibe los datos de la clase Abstracta Paciente 
+pacienteC.registrarDefuncion(); // Cambia el estatus del paciente a fallecido
+pacienteC.imprimirDatosPaciente();
+
+print('-----------------------------------------------');
+print('-----------------------------------------------');
+print('--- Operacion - DELETE (Eliminacion de los Datos) ---');
+print('-----------------------------------------------');
+// Operacion - DELETE (Eliminacion de los Datos)
+operacionesCRUD.eliminarPersona(257);
 
 }
 
@@ -107,6 +150,7 @@ enum GrupoSanguineo { AP, AN, BP, BN, ABP, ABN, OP, ON, RHP, RHN }
 //-------------------------------------------------------------------------------------
 
 // Declaracion de la clase abstracta Persona
+
 // Esta es la estrucutura que se utilizara en todos los llamados
 // donde se utilice la clase Persona
 // Su propósito es servir como una base o plantilla para otras clases que la heredan,
@@ -125,6 +169,7 @@ abstract class Persona {
   DateTime fechaRegistro;
 
   // Constructor de la clase Persona
+
   // en el contrucutor se implementan los datos requeridos
   // para la creacion de la persona.
   Persona({
@@ -141,6 +186,7 @@ abstract class Persona {
     required this.fechaRegistro,
   });
 
+  //READ Lectura de la Informacion insertada
   // Método para imprimir los datos de la persona
   void imprimirDatosPersona() {
     print('Datos de la Persona $cortesyTitle $nombre $primer_apellido $segundo_apellido');
@@ -158,8 +204,6 @@ abstract class Persona {
     print('-----------------------------------------------------------------------------');
   }
 
-
-
   // Helper para formatear números de un solo dígito con un cero delante
   // Es útil para formatear fechas y horas, por ejemplo, en situaciones 
   //donde queremos que siempre se muestren dos dígitos, como en "08" 
@@ -173,12 +217,13 @@ abstract class Persona {
 //--------------------------------------------------------------------------------------------------
 
 // Declaración de la clase Paciente que hereda de Persona
+
 // La clase Paciente hereda de la clase Persona y se utiliza para crear objetos de tipo Paciente
 // con propiedades específicas para el manejo de pacientes en un hospital.
 class Paciente extends Persona {
   String nss;
   String tipoSeguro;
-  Enum estatusVida; // Se Asigna la Configuracion dada en el Enum para el Estatus de Vida
+  EstatusVida estatusVida; // Se Asigna la Configuracion dada en el Enum para el Estatus de Vida
   String estatusMedico;
   DateTime fechaRegistro;
   DateTime fechaUltimaCita;
@@ -222,8 +267,54 @@ class Paciente extends Persona {
           estatus: estatus,
           fechaRegistro: fechaRegistro
         );
+}
 
-   // Sobrescribiendo el método imprimirDatosPersona de la clase Persona
+//--------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------
+
+class NuevoPaciente extends Paciente {
+
+  NuevoPaciente({
+    required int id,
+    required String cortesyTitle,
+    required String nombre,
+    required String primer_apellido,
+    required String segundo_apellido,
+    required Genero genero,
+    required GrupoSanguineo grupoSanguineo,
+    required DateTime fechaNacimiento,
+    required String curp,
+    required String estatus,
+    required String nss,
+    required String tipoSeguro,
+    required EstatusVida estatusVida,
+    required String estatusMedico,
+    required DateTime fechaRegistro,
+    required DateTime fechaUltimaCita,
+    required usuario tipoUsuario,
+  }) : super(
+          id: id,
+          cortesyTitle: cortesyTitle,
+          nombre: nombre,
+          primer_apellido: primer_apellido,
+          segundo_apellido: segundo_apellido,
+          genero: genero,
+          grupoSanguineo: grupoSanguineo,
+          fechaNacimiento: fechaNacimiento,
+          curp: curp,
+          estatus: estatus,
+          nss: nss,
+          tipoSeguro: tipoSeguro,
+          estatusVida: estatusVida,
+          estatusMedico: estatusMedico,
+          fechaRegistro: fechaRegistro,
+          fechaUltimaCita: fechaUltimaCita,
+          tipoUsuario: tipoUsuario,
+        );
+
+  //(UPDATE) Actulizacion de la Informacion del Paciente
+
+    // Sobrescribiendo el método imprimirDatosPersona de la clase Persona
     // la Sobre escritura permitira mostrar los datos en pantalla 
     // con la informacion de los tres pacientes.
   @override
@@ -239,7 +330,7 @@ class Paciente extends Persona {
     print('-----------------------------------------------------------------------------');
   }
 
-
+// (READ) Lectura de la Informacion del Paciente
   // Método para imprimir los datos del paciente
   void imprimirDatosPaciente() {
     imprimirDatosPersona();
@@ -247,10 +338,214 @@ class Paciente extends Persona {
     print('-----------------------------------------------------------------------------');
   }
 
-  // Método para registrar la defunción del paciente
-  void registrarDefuncion() {
-    estatusVida = EstatusVida.Fallecido; // Seleccion de Enum
-    estatusMedico = EstatusMedico.Inactivo.toString().split('.').last; //Seleccion de Enum
-    tipoUsuario= usuario.Finado; // Seleccion de Enum
-  }
 }
+
+
+class PacienteRegistrado extends Paciente{
+    PacienteRegistrado({
+      required int id,
+      required String cortesyTitle,
+      required String nombre,
+      required String primer_apellido,
+      required String segundo_apellido,
+      required Genero genero,
+      required GrupoSanguineo grupoSanguineo,
+      required DateTime fechaNacimiento,
+      required String curp,
+      required String estatus,
+      required String nss,
+      required String tipoSeguro,
+      required EstatusVida estatusVida,
+      required String estatusMedico,
+      required DateTime fechaRegistro,
+      required DateTime fechaUltimaCita,
+      required usuario tipoUsuario,
+    }) : super(
+            id: id,
+            cortesyTitle: cortesyTitle,
+            nombre: nombre,
+            primer_apellido: primer_apellido,
+            segundo_apellido: segundo_apellido,
+            genero: genero,
+            grupoSanguineo: grupoSanguineo,
+            fechaNacimiento: fechaNacimiento,
+            curp: curp,
+            estatus: estatus,
+            nss: nss,
+            tipoSeguro: tipoSeguro,
+            estatusVida: estatusVida,
+            estatusMedico: estatusMedico,
+            fechaRegistro: fechaRegistro,
+            fechaUltimaCita: fechaUltimaCita,
+            tipoUsuario: tipoUsuario,
+          );
+
+      //(UPDATE) Actulizacion de la Inforacion de PERSONA
+
+      // Sobrescribiendo el método imprimirDatosPersona de la clase Persona
+      // la Sobre escritura permitira mostrar los datos en pantalla 
+      // con la informacion de los tres pacientes.
+
+    @override
+    void imprimirDatosPersona() {
+      super.imprimirDatosPersona(); // Llama al método original
+      print('Paciente: ${tipoUsuario.toString().split('.').last}'); // Seleccion Enum
+      print('Datos adicionales del paciente:');
+      print('NSS: $nss');
+      print('Tipo de Seguro: $tipoSeguro');
+      print('Estatus de Vida: ${estatusVida.toString().split('.').last}'); // Seleccion Enum
+      print('Estatus Médico: ${estatusMedico.toString().split('.').last}'); // Seleccion Enum
+      print('Fecha de Registro: ${fechaRegistro.year}-${_twoDigits(fechaRegistro.month)}-${_twoDigits(fechaRegistro.day)}');
+      print('-----------------------------------------------------------------------------');
+    }
+
+    //(READ) Lectura de los datos del Paciente
+
+    // Método para imprimir los datos del paciente
+    void imprimirDatosPaciente() {
+      imprimirDatosPersona();
+      print('Fecha Última Cita: ${fechaUltimaCita.year}-${_twoDigits(fechaUltimaCita.month)}-${_twoDigits(fechaUltimaCita.day)}');
+      print('-----------------------------------------------------------------------------');
+    }
+
+
+  }
+
+  class Pacientefinado extends Paciente{
+
+    Pacientefinado({
+      required int id,
+      required String cortesyTitle,
+      required String nombre,
+      required String primer_apellido,
+      required String segundo_apellido,
+      required Genero genero,
+      required GrupoSanguineo grupoSanguineo,
+      required DateTime fechaNacimiento,
+      required String curp,
+      required String estatus,
+      required String nss,
+      required String tipoSeguro,
+      required EstatusVida estatusVida,
+      required String estatusMedico,
+      required DateTime fechaRegistro,
+      required DateTime fechaUltimaCita,
+      required usuario tipoUsuario,
+      required DateTime deceso
+    }) : super(
+            id: id,
+            cortesyTitle: cortesyTitle,
+            nombre: nombre,
+            primer_apellido: primer_apellido,
+            segundo_apellido: segundo_apellido,
+            genero: genero,
+            grupoSanguineo: grupoSanguineo,
+            fechaNacimiento: fechaNacimiento,
+            curp: curp,
+            estatus: estatus,
+            nss: nss,
+            tipoSeguro: tipoSeguro,
+            estatusVida: estatusVida,
+            estatusMedico: estatusMedico,
+            fechaRegistro: fechaRegistro,
+            fechaUltimaCita: fechaUltimaCita,
+            tipoUsuario: tipoUsuario,
+          );
+
+      //(UPDATE) Actulizacion de la Informacion de PERSONA
+      // Sobrescribiendo el método imprimirDatosPersona de la clase Persona
+      // la Sobre escritura permitira mostrar los datos en pantalla 
+      // con la informacion de los tres pacientes.
+    @override
+    void imprimirDatosPersona() {
+      super.imprimirDatosPersona(); // Llama al método original
+      print('Paciente: ${tipoUsuario.toString().split('.').last}'); // Seleccion Enum
+      print('Datos adicionales del paciente:');
+      print('NSS: $nss');
+      print('Tipo de Seguro: $tipoSeguro');
+      print('Estatus de Vida: ${estatusVida.toString().split('.').last}'); // Seleccion Enum
+      print('Estatus Médico: ${estatusMedico.toString().split('.').last}'); // Seleccion Enum
+      print('Fecha de Registro: ${fechaRegistro.year}-${_twoDigits(fechaRegistro.month)}-${_twoDigits(fechaRegistro.day)}');
+      print('-----------------------------------------------------------------------------');
+    }
+
+    // (READ) Lectuda de la Informacion del Paciente
+    // Método para imprimir los datos del paciente
+    void imprimirDatosPaciente() {
+      imprimirDatosPersona();
+      print('Fecha Última Cita: ${fechaUltimaCita.year}-${_twoDigits(fechaUltimaCita.month)}-${_twoDigits(fechaUltimaCita.day)}');
+      print('-----------------------------------------------------------------------------');
+    }
+
+
+    // (UPDATE) Actualizacion del registro de la Persona Fallecida
+    // Método para registrar la defunción del paciente
+    void registrarDefuncion() {
+      estatusVida = EstatusVida.Fallecido; // Seleccion de Enum
+      print('Paciente ha sido marcado como fallecido.');
+      estatusMedico = EstatusMedico.Inactivo.toString().split('.').last; //Seleccion de Enum
+      tipoUsuario= usuario.Finado; // Seleccion de Enum
+      fechaUltimaCita = DateTime(2023,5,7,17,30);
+      DateTime deceso = DateTime.now();
+      print("Fecha de Deceso: ${deceso.year}-${_twoDigits(deceso.month)}-${_twoDigits(deceso.day)}");
+    }
+  }
+  
+  //--------------------------------------------------------------------------------
+  // Clase para las operaciones CRUD
+
+  class OperacionesCRUD{
+
+    // Se crea un Arreglo para almacenar las personas
+    final List<Persona> _pacientes = [];
+    // (_pacientes) solo puede ser accedido dentro del mismo archivo donde fue definido, 
+    //  y no es accesible desde otros archivos 
+    // (CREATE) Creación de un nuevo registro de Persona
+    void crearPersona(Persona persona){
+      _pacientes.add(persona);
+       print('------------------------------------------------------------------');
+       print('Paciente agregado: ${persona.nombre} ${persona.primer_apellido} ${persona.segundo_apellido}');
+       print('------------------------------------------------------------------');
+       print(' ');
+    }
+
+    // READ: Imprimir Todos los Pacientes
+    void TodoPersonas(){
+      print('------------------------------------------------------------------');
+      print('Listado de Pacientes:');
+      print('------------------------------------------------------------------');
+      for (var persona in _pacientes){
+        persona.imprimirDatosPersona();
+      }
+    }
+
+    // UPDATE: Actualizar la Informacion de un Paciente
+    void actualizarPersona(int id, Persona persona){
+      final index = _pacientes.indexWhere((p) => p.id == id);
+      if (index >= 0){
+        _pacientes[index] = persona;
+        print('------------------------------------------------------------------');
+        print('Paciente actualizado: ${persona.nombre} ${persona.primer_apellido} ${persona.segundo_apellido}');
+        print('------------------------------------------------------------------');
+        print(' ');
+      } else {
+        print('------------------------------------------------------------------');
+        print('Paciente no encontrado');
+        print('------------------------------------------------------------------');
+        print(' ');
+      }
+    }
+
+    // DELETE: Eliminar un Paciente
+    void eliminarPersona(int id){
+    int posicion = _pacientes.length;
+    _pacientes.removeWhere((paciente) => paciente.id == id);
+    if (_pacientes.length < posicion) {
+      print('Paciente con ID $id eliminado.');
+    } else {
+      print('Paciente con ID $id no encontrado. No se puede eliminar.');
+    }
+    }
+    
+
+  }
