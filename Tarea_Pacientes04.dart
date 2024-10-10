@@ -493,7 +493,9 @@ class PacienteRegistrado extends Paciente{
   
   //--------------------------------------------------------------------------------
   // Clase para las operaciones CRUD
+
   // Implements para El CRUD
+
   class OperacionesCRUD{
 
     // Se crea un Arreglo para almacenar las personas
@@ -509,7 +511,7 @@ class PacienteRegistrado extends Paciente{
        print(' ');
     }
 
-    // READ: Imprimir Todos los Pacientes
+    // READ: Imprimir Todos los Pacientes que se han Registrado
     void TodoPersonas(){
       print('------------------------------------------------------------------');
       print('Listado de Pacientes:');
