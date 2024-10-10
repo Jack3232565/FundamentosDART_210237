@@ -493,7 +493,7 @@ class PacienteRegistrado extends Paciente{
   
   //--------------------------------------------------------------------------------
   // Clase para las operaciones CRUD
-
+  // Implements para El CRUD
   class OperacionesCRUD{
 
     // Se crea un Arreglo para almacenar las personas
