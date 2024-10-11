@@ -25,18 +25,22 @@
 
 void main(){
 
+ // Se llama a la función emitNumbers() que devuelve un Stream.
+ // Al emitirse un valor se ejecuta el callback que imprime el valor del Stream.
 emitNumbers().listen((value){
-  print('Stream value: $value');
+  // Se imprime la periocidad  especificada en (take())
+  print('Stream valor: $value');
 });
 
 }
 
 // Flujo de datos 
 Stream<int> emitNumbers(){
-
+// Se crea un Stream que emite un valor de manera periódica cada segundo usando Stream.periodic.
+  // La función periódica recibe un callback que imprime y retorna el valor actual.
   return Stream.periodic( const Duration(seconds: 1), (value){
     print('Desde periodic $value');
-    return value;
-  }).take(6);// (take) Permite contar el numero especificado de repeticiones
+    return value; // Retorna el valor que se emitirá en el Stream.
+  }).take(6);// (take()) Permite contar el numero especificado de repeticiones y al terminar se cierra
 
 }
