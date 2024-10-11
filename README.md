@@ -26,6 +26,7 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Integra
 |16|Async-Await| |Activa|
 |17|Try,on,catch y finally| |Activa|
 |18|Streams| |Activa|
+|19|async* y await| |Activa|
 
 ### LISTA DE HERRAMIENTAS
 ![DART](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
