@@ -22,6 +22,7 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Integra
 |Tarea 04| Uso de Clases Abstractas en el Caso de Estudio del Hospital |10|Finalizada|
 |13|Aserciones|3|Finalizada|
 |14|Mixins|9|Finalizada|
+|15|Futures| |Activa|
 
 ### LISTA DE HERRAMIENTAS
 ![DART](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
