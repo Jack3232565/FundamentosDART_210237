@@ -14,10 +14,10 @@ emitNumbers().listen((value){
 emitNumbers() async*{
 
 // Se define le arreglo de valores que se desean emitir a través del Stream.
-  final valuesToEmit = [1,2,3,4,5];
+  final valuesToEmit = [1,2,3,4,5,'A','B','C'];
 
 // Se recorre el arreglo de valores a emitir con el bucle (for).
-  for(int i in valuesToEmit){
+  for(dynamic i in valuesToEmit){
 // Se espera un segundo antes de emitir el valor.
     await Future.delayed(Duration(seconds: 1));
 // Se emite el valor asignado.

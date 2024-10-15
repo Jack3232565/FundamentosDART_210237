@@ -37,10 +37,10 @@ Future <String> httpGet ( String url) async {
 
   // Lanza una excepción indicando que no hay parámetros en el URL.
   // Esto simula un error en la solicitud.
-   throw Exception('No hay parametros en el URl');
+  // throw Exception('No hay parametros en el URl');
 
   // si existiece un error este se detectaria en esta seccion al intetar conectar
-  //throw 'Error en la peticion HTTP';
+  throw 'Error en la peticion HTTP';
 
   // si no ubiese al guna interferencia el proceso este pasaria retornando el valor
   //  return 'Tenemos un valo de la Petición';

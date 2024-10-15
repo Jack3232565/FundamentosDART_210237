@@ -35,7 +35,7 @@ void main ()  async {
 Future <String> httpGet ( String url) async {
 //se hace una pausa de 1 segundo
 // usando Future.delayed. Esto simula el tiempo de espera de respuesta
-  await Future.delayed(Duration(seconds: 1));
+  await Future.delayed(Duration(seconds: 4));
 
 // si no hay respuesta se controla el error 
   //throw 'Error en la peticion HTTP';
