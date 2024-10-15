@@ -22,11 +22,11 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Integra
 |Tarea 04| Uso de Clases Abstractas en el Caso de Estudio del Hospital |10|Finalizada|
 |13|Aserciones|3|Finalizada|
 |14|Mixins|9|Finalizada|
-|15|Futures| |Activa|
-|16|Async-Await| |Activa|
-|17|Try,on,catch y finally| |Activa|
-|18|Streams| |Activa|
-|19|async* y await| |Activa|
+|15|Futures| 5 |Activa|
+|16|Async-Await| 5 |Activa|
+|17|Try,on,catch y finally| 6 |Activa|
+|18|Streams| 6 |Activa|
+|19|async* y await| 4 |Activa|
 
 ### LISTA DE HERRAMIENTAS
 ![DART](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
